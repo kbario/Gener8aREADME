@@ -61,9 +61,15 @@ const questions = [
         ],
         default: 'MIT'
     }, {
-        // TODO: github username    
+        // TODO: github username 
+        type: 'input',
+        name: 'github-username',
+        message: 'What is your GitHub username?',   
     }, {
         // TODO: email
+        type: 'input',
+        name: 'email',
+        message: 'What email can people with questions contact you by?',
     },
 ];
 
