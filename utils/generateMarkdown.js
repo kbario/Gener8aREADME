@@ -17,38 +17,45 @@ function renderLicenseSection(license) {}
 function generateMarkdown(data) {
     const shield = renderLicenseBadge(data.license)
     return `# ${data.title}
-![license](${shield})
-## Description
-
-${data.title} is a ${data.description.thing} that ${data.description.what}. ${data.description.why}. It is create with ${data.description.how}.
-
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Credits](#credits)
-- [License](#license)
-
-## Installation
-${data.installation}
-## Usage
-${data.usage}
-## Credits
-### Contributors
-### Tutorials used
-### Third-Party Assets
-${data.credits.contributors}
-
-## Badges
-
-## Features
-
-## How to Contribute
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
-
-## Tests
-## License
-Licensed under the [${data.license}](LICENSE.txt) license.
+    ![license](${shield})
+    ## Description
+    
+    #### What?
+    ${data.title} is a ${data.description.thing} ${data.description.what}. 
+    #### Why?
+    ${data.description.why}. 
+    #### How?
+    ${data.description.how}.
+    
+    ## Table of Contents
+    
+    - [Installation](#installation)
+    - [Usage](#usage)
+    - [Credits](#credits)
+    - [Contribute](#contribute)
+    - [License](#license)
+    
+    ## Installation
+    ${data.title} can be installed from ${data.installation.platform} using the following code:
+    \```
+    ${data.installation.code}
+    \```
+    ## Usage
+    ${data.usage}
+    ## Credits
+    ### Contributors
+    ### Tutorials used
+    ### Third-Party Assets
+    ${data.credits.contributors}
+    
+    ## Features
+    
+    ## How to Contribute
+    [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
+    
+    ## Tests
+    ## License
+    Licensed under the [${data.license}](LICENSE.txt) license.
 `;
 }
 

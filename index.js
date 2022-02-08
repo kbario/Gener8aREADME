@@ -43,7 +43,7 @@ const questions = [
     }, {   // what technologies did you use?
         type: 'input',
         name: 'description.how',
-        message: 'What technologies did you use to make it?',
+        message(answers){return `What technologies did you use to make it? \x1B[33mFinish this sentence:\x1B[0m ${answers.title} is built using...`},
     }, {   // the platform the code can be got from
         type: 'list', 
         name: 'installation.platform', 
