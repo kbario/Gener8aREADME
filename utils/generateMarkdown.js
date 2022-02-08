@@ -34,13 +34,17 @@ ${data.installation}
 ## Usage
 ${data.usage}
 ## Credits
-${data.contributors}
+### Contributors
+### Tutorials used
+### Third-Party Assets
+${data.credits.contributors}
 
 ## Badges
 
 ## Features
 
 ## How to Contribute
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
 
 ## Tests
 ## License

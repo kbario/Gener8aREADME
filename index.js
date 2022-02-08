@@ -5,106 +5,95 @@ const generateMarkdown = require('./utils/generateMarkdown.js')
 
 // TODO: Create an array of questions for user input
 const questions = [
-    {
-        // TODO: name
+    {   // User's name
         type: 'input',
         name: 'user.name',
         message: 'Hello, What\'s your name?',   
-    }, {
-        // TODO: github username 
+    }, {   // User's github user name
         type: 'input',
         name: 'user.githubUsername',
         message(answers){return `What's your GitHub username, ${answers.user.name}?`} ,   
-    }, {
-        // TODO: email
+    }, {   // User's email for questions
         type: 'input',
         name: 'user.email',
         message: 'And best email address to contact you by?',
-    }, {
-        // TODO: title fo the project
+    }, {   // project's title for readme title 
         type: 'input',
         name: 'title',
         message: 'What is your project\'s name?',
-    }, {
-        // TODO: description what does it do
+    }, {   // what type of software is it?
         type: 'list',
         name: 'description.thing',
-        choices:['CLI', "Website"],
+        choices:['CLI', "Website", 'other'],
         message(answers){return `What is ${answers.title}?`},
-    }, {
-        // TODO: description what does it do
+    }, {   // if software === other, ask them to write it
+        type: 'input',
+        name: 'description.thing',
+        choices:['CLI', "Website", 'other'],
+        message(answers){return `Elaborate, what is ${answers.title}?`},
+        when(answers){return answers.description.thing === 'other'}
+    }, {   // ask what it does
         type: 'input',
         name: 'description.what',
-        message(answers){return `\x1B[33mFinish this sentence:\x1B[0m ${answers.title} is a ${answers.description.thing} that...`},
-    }, {
-        // TODO: description why did you make it
+        message(answers){return `What does ${answers.title} do?\n\x1B[33mFinish this sentence:\x1B[0m ${answers.title} is a ${answers.description.thing}...`},
+    }, {    // why did you create it?
         type: 'input',
         name: 'description.why',
         message(answers){return `Why did you create ${answers.title}? What problems does it solve?`},
-    }, {
-        // TODO: description how did you make it (what technologies)
+    }, {   // what technologies did you use?
         type: 'input',
         name: 'description.how',
         message: 'What technologies did you use to make it?',
-    }, {
-        // TODO: description what did you learn?
-        type: 'input',
-        name: 'description.learn',
-        message(answers){return `And what did you learn while making ${answers.title}?`},
-    }, {
-        // TODO: installation instructions
+    }, {   // the platform the code can be got from
+        type: 'list', 
+        name: 'installation.platform', 
+        choices: ['npm', 'github'],
+        message(answers){return `What platform can ${answers.title} accessed from?`},
+    }, {  
         type: 'input', 
-        name: 'installation', 
-        message: 'How can people install this project?'
+        name: 'installation.code', 
+        message: 'What code should be run to install it?',
     }, {
         // TODO: usage information
         type: 'input',
         name: 'usage',
         message: 'How do people use this project?',
-    }, {
-        // TODO: contributions guidelines
+    }, {   // did anyone help you ?
         type: 'list',
-        name: 'contributors.bool',
+        name: 'credits.contributors.bool',
         choices: ['yes', 'no'],
         message(answers){return `Did other developers contribute to ${answers.title}?`},
-    }, {
-        // TODO: contributions guidelines
+    }, {   // if so what are their github usernames?
         type: 'input',
-        name: 'contributors.usernames',
+        name: 'credits.contributors.usernames',
         message: 'What are their GitHub usernames? (comma separated)',
-        when(answers) {return answers.contributors.bool === 'yes'}
-    }, {
-        // TODO: tutorials used?
+        when(answers) {return answers.credits.contributors.bool === 'yes'}
+    }, {   // did you use any tutorials?
         type: 'list',
-        name: 'tutorials.bool',
+        name: 'credits.tutorials.bool',
         choices: ['yes', 'no'],
         message(answers){return `Did you follow any tutorials while creating ${answers.title}?`},
-    }, {
-        // TODO: which ones?
+    }, {   // if so, what are their urls?
         type: 'input',
-        name: 'tutorials.url',
+        name: 'credits.tutorials.url',
         message: 'What are the URLs to these tutorials? (separated with a comma if multiple)',
-        when(answers) {return answers.tutorials.bool === 'yes'}
-    }, {
-        // TODO: assets used?
+        when(answers) {return answers.credits.tutorials.bool === 'yes'}
+    }, {   // did you use any assets?
         type: 'list',
-        name: 'thirdPartyAssets.bool',
+        name: 'credits.thirdPartyAssets.bool',
         choices: ['yes', 'no'],
         message(answers){return `Did you use any third-party assets to create ${answers.title}?`},
-    }, {
-        // TODO: which ones?
+    }, {   // if so, which ones
         type: 'input',
-        name: 'thirdPartyAssets.url',
+        name: 'credits.thirdPartyAssets.url',
         message: 'What are the URLs to these assets? (separated with a comma if multiple)',
-        when(answers) {return answers.thirdPartyAssets.bool === 'yes'}
+        when(answers) {return answers.credits.thirdPartyAssets.bool === 'yes'}
     }, {
         // TODO: test instructions
         type: 'input', 
         name: 'testIns',
         message: 'How can people test this project?',
-    }, {
-        // TODO: licence
-        // TODO: list of options
+    }, {   // What license?
         type: 'list',
         name: 'license',
         message(answers){return `What license do you want to add to ${answers.title}?`},
