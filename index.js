@@ -10,7 +10,30 @@ const questions = [
         name: 'title',
         message: 'What is your project\'s name?',
     }, {
-        // TODO: description
+        // TODO: description what does it do
+        type: 'input',
+        name: 'desc-what',
+        message: 'What does this project do?',
+    }, {
+        // TODO: description why did you make it
+        type: 'input',
+        name: 'desc-why',
+        message: 'What does this project do?',
+    }, {
+        // TODO: description how did you make it (what technologies)
+        type: 'input',
+        name: 'desc-how',
+        message: 'What does this project do?',
+    }, {
+        // TODO: description what problem does it solve
+        type: 'input',
+        name: 'desc-problems',
+        message: 'What does this project do?',
+    }, {
+        // TODO: description what did you learn?
+        type: 'input',
+        name: 'desc-learn',
+        message: 'What does this project do?',
     }, {
         // TODO: installation instructions
     }, {
