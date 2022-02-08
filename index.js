@@ -6,6 +6,9 @@ const fs = require('fs');
 const questions = [
     {
         // TODO: title fo the project
+        type: 'input',
+        name: 'title',
+        message: 'What is your project\'s name?',
     }, {
         // TODO: description
     }, {
