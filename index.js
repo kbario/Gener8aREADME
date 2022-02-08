@@ -46,6 +46,20 @@ const questions = [
     }, {
         // TODO: licence
         // TODO: list of options
+        type: 'list',
+        name: 'desc-problems',
+        message: 'What does this project do?',
+        choices: [
+            'GNU AGPLv3',
+            'GNU GPLv3',
+            'GNU LGPLv3',
+            'Mozilla Public 2.0',
+            'Apache 2.0',
+            'MIT',
+            'Boost Software 1.0',
+            'The Unlicense',
+        ],
+        default: 'MIT'
     }, {
         // TODO: github username    
     }, {
