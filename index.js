@@ -35,7 +35,7 @@ const questions = [
     }, {   // ask what it does
         type: 'input',
         name: 'description.what',
-        message(answers){return `What does ${answers.title} do?\n\x1B[33mFinish this sentence:\x1B[0m ${answers.title} is a ${answers.description.thing}...`},
+        message(answers){return `What does ${answers.title} do? \x1B[33mFinish this sentence:\x1B[0m ${answers.title} is a ${answers.description.thing}...`},
     }, {    // why did you create it?
         type: 'input',
         name: 'description.why',
@@ -119,7 +119,7 @@ function init() {
     .prompt(questions)
     .then((answers) => {
         console.log(answers)
-        writeToFile(answers)
+        // writeToFile(answers)
     });
 }
 

@@ -1,5 +1,5 @@
 {
-  "name": "readmegener8",
+  "name": "gener8areadme",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kbario/readmeGener8.git"
+    "url": "git+https://github.com/kbario/Gener8aREADME.git"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kbario/readmeGener8/issues"
+    "url": "https://github.com/kbario/Gener8aREADME/issues"
   },
-  "homepage": "https://github.com/kbario/readmeGener8#readme",
+  "homepage": "https://github.com/kbario/Gener8aREADME#readme",
   "dependencies": {
     "inquirer": "^8.2.0"
   }
