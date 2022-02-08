@@ -6,35 +6,51 @@ const generateMarkdown = require('./utils/generateMarkdown.js')
 // TODO: Create an array of questions for user input
 const questions = [
     {
+        // TODO: name
+        type: 'input',
+        name: 'user.name',
+        message: 'Hello, What\'s your name?',   
+    }, {
+        // TODO: github username 
+        type: 'input',
+        name: 'user.githubUsername',
+        message(answers){return `What's your GitHub username, ${answers.user.name}?`} ,   
+    }, {
+        // TODO: email
+        type: 'input',
+        name: 'user.email',
+        message: 'And best email address to contact you by?',
+    }, {
         // TODO: title fo the project
         type: 'input',
         name: 'title',
         message: 'What is your project\'s name?',
     }, {
         // TODO: description what does it do
+        type: 'list',
+        name: 'description.thing',
+        choices:['CLI', "Website"],
+        message(answers){return `What is ${answers.title}?`},
+    }, {
+        // TODO: description what does it do
         type: 'input',
-        name: 'what',
-        message: 'What does this project do?',
+        name: 'description.what',
+        message(answers){return `\x1B[33mFinish this sentence:\x1B[0m ${answers.title} is a ${answers.description.thing} that...`},
     }, {
         // TODO: description why did you make it
         type: 'input',
-        name: 'why',
-        message: 'Why did you create this project?',
+        name: 'description.why',
+        message(answers){return `Why did you create ${answers.title}? What problems does it solve?`},
     }, {
         // TODO: description how did you make it (what technologies)
         type: 'input',
-        name: 'how',
-        message: 'How did you make this project? (what technologies?)',
-    }, {
-        // TODO: description what problem does it solve
-        type: 'input',
-        name: 'problems',
-        message: 'What problem does this project solve?',
+        name: 'description.how',
+        message: 'What technologies did you use to make it?',
     }, {
         // TODO: description what did you learn?
         type: 'input',
-        name: 'learn',
-        message: 'What did you learn while creating this project?',
+        name: 'description.learn',
+        message(answers){return `And what did you learn while making ${answers.title}?`},
     }, {
         // TODO: installation instructions
         type: 'input', 
@@ -47,19 +63,40 @@ const questions = [
         message: 'How do people use this project?',
     }, {
         // TODO: contributions guidelines
-        type: 'input',
-        name: 'contributors',
-        message: 'Who else contributed to this'
+        type: 'list',
+        name: 'contributors.bool',
+        choices: ['yes', 'no'],
+        message(answers){return `Did other developers contribute to ${answers.title}?`},
     }, {
         // TODO: contributions guidelines
         type: 'input',
-        name: 'tutorials',
-        message: 'Did you follow any tutorials?'
+        name: 'contributors.usernames',
+        message: 'What are their GitHub usernames? (comma separated)',
+        when(answers) {return answers.contributors.bool === 'yes'}
     }, {
-        // TODO: contributions guidelines
+        // TODO: tutorials used?
+        type: 'list',
+        name: 'tutorials.bool',
+        choices: ['yes', 'no'],
+        message(answers){return `Did you follow any tutorials while creating ${answers.title}?`},
+    }, {
+        // TODO: which ones?
         type: 'input',
-        name: 'thirdPartyAssets',
-        message: 'Did you use any third-party assets?'
+        name: 'tutorials.url',
+        message: 'What are the URLs to these tutorials? (separated with a comma if multiple)',
+        when(answers) {return answers.tutorials.bool === 'yes'}
+    }, {
+        // TODO: assets used?
+        type: 'list',
+        name: 'thirdPartyAssets.bool',
+        choices: ['yes', 'no'],
+        message(answers){return `Did you use any third-party assets to create ${answers.title}?`},
+    }, {
+        // TODO: which ones?
+        type: 'input',
+        name: 'thirdPartyAssets.url',
+        message: 'What are the URLs to these assets? (separated with a comma if multiple)',
+        when(answers) {return answers.thirdPartyAssets.bool === 'yes'}
     }, {
         // TODO: test instructions
         type: 'input', 
@@ -70,7 +107,7 @@ const questions = [
         // TODO: list of options
         type: 'list',
         name: 'license',
-        message: 'What license do you want to add to this project?',
+        message(answers){return `What license do you want to add to ${answers.title}?`},
         choices: [
             'GNU AGPLv3',
             'GNU GPLv3',
@@ -82,80 +119,13 @@ const questions = [
             'The Unlicense',
         ],
         default: 'MIT'
-    }, {
-        // TODO: github username 
-        type: 'input',
-        name: 'githubUsername',
-        message: 'What is your GitHub username?',   
-    }, {
-        // TODO: email
-        type: 'input',
-        name: 'email',
-        message: 'What email can people with questions contact you by?',
-    },
+    }, 
 ];
 
 // TODO: Create a function to write README file
-function writeToFile({title, what, why, how, problems, learn, installation, usage, contributors, testIns, license, githubUsername, email}) {
-    // TODO for loop that creates md section of github users that contributed to the project
+function writeToFile() {
 
-    
-    const readmeTemplate = `# ${title}
-
-## Description
-
-- ${what}
-- ${why}
-- ${how} 
-- ${problems}
-- ${learn}
-
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Credits](#credits)
-- [License](#license)
-
-## Installation
-
-${installation}
-
-## Usage
-
-${usage}
-
-## Credits
-
-// TODO colaborators from for loop above
-
-// TODO third party assets
-
-// TODO tutorials
-
-## License
-
-${license}
-
-## Badges
-
-![badmath](https://img.shields.io/github/languages/top/lernantino/badmath)
-
-Badges aren't necessary, per se, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.
-
-## Features
-
-If your project has a lot of features, list them here.
-
-## How to Contribute
-
-If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer.
-
-## Tests
-
-Go the extra mile and write tests for your application. Then provide examples on how to run them here.`
-
-    fs.writeFile('./README.md', readmeTemplate, (err) => err ? console.log(err) : console.log("Success!"))
+    fs.writeFile('./README.md', asdf, (err) => err ? console.log(err) : console.log("Success!"))
 }
 
 // TODO: Create a function to initialize app
@@ -163,7 +133,8 @@ function init() {
     inquirer
     .prompt(questions)
     .then((answers) => {
-        writeToFile(answers)
+        console.log(answers)
+        // writeToFile(answers)
     });
 }
 
