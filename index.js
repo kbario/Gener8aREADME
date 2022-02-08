@@ -37,12 +37,24 @@ const questions = [
         message: 'What does this project do?',
     }, {
         // TODO: installation instructions
+        type: 'input', 
+        name: 'installation', 
+        message: 'How can people install this project?'
     }, {
         // TODO: usage information
+        type: 'input',
+        name: 'usage',
+        message: 'How do people use this project?',
     }, {
         // TODO: contributions guidelines
+        type: 'input',
+        name: 'contributors',
+        message: 'Who else contributed to this'
     }, {
         // TODO: test instructions
+        type: 'input', 
+        name: ' test-instructions',
+        message: 'How can people test this project?',
     }, {
         // TODO: licence
         // TODO: list of options
