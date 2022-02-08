@@ -109,23 +109,19 @@ const questions = [
         name: 'license',
         message(answers){return `What license do you want to add to ${answers.title}?`},
         choices: [
-            'GNU AGPLv3',
-            'GNU GPLv3',
-            'GNU LGPLv3',
-            'Mozilla Public 2.0',
-            'Apache 2.0',
+            'MPL-2.0',
+            'Apache-2.0',
             'MIT',
-            'Boost Software 1.0',
-            'The Unlicense',
+            'Unlicense',
         ],
         default: 'MIT'
     }, 
 ];
 
 // TODO: Create a function to write README file
-function writeToFile() {
-
-    fs.writeFile('./README.md', asdf, (err) => err ? console.log(err) : console.log("Success!"))
+function writeToFile(data) {
+    const gener8 = generateMarkdown(data)
+    fs.writeFile('./README.md', gener8, (err) => err ? console.log(err) : console.log("Success!"))
 }
 
 // TODO: Create a function to initialize app
@@ -134,7 +130,7 @@ function init() {
     .prompt(questions)
     .then((answers) => {
         console.log(answers)
-        // writeToFile(answers)
+        writeToFile(answers)
     });
 }
 
