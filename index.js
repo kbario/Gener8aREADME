@@ -8,7 +8,7 @@ const questions = [
     {   // User's github user name
         type: 'input',
         name: 'user.github',
-        message(answers){return `Hello, What's your GitHub username?`} ,   
+        message: 'Hello, What\'s your GitHub username?' ,   
     }, {   // User's email for questions
         type: 'input',
         name: 'user.email',
@@ -87,13 +87,33 @@ function writeToFile(answers) {
 
 // TODO: Create a function to initialize app
 function init() {
-    inquirer
-    .prompt(questions)
-    .then((answers) => {
+    // inquirer
+    // .prompt(questions)
+    // .then((answers) => {
         console.log(answers)
         writeToFile(answers)
-    });
+    // });
 }
 
+const answers = {
+    user: { github: 'kbario', email: 'kylebario1@gmail.com' },
+    title: 'Gener8aREADME',
+    description: "Gener8aREADME is a CLI application that dynamically creates README.md files for open-source projects based on a users input in the command line. It was created to take the guesswork out of making a README. README's are crucial aspects of github repositories, often being the make or break of a project. If your README doesn't describe your project well enough, comes across unprofessional, or does not answer the basic questions for usage, installation, and reporting bugs, people may not use or contribute to your project. Gener8aREADME has a professional template that makes sure all aspects of a good README are covered without you needing to create links and style markdown files. Gener8aREADME was created using JavaScript, Node.js, and the Node.js module 'inquirer'.",
+    installation: 'git clone https://github.com/kbario/Gener8aREADME.git',
+    usage: 'asdf',
+    credits: {
+      contributors: { bool: 'yes', values: 'kbario, tkimhofer, wratten' },
+      tutorials: {
+        bool: 'yes',
+        values: 'https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA, https://www.youtube.com/watch?v=MBqS1kYzwTc'
+      },
+      thirdPartyAssets: {
+        bool: 'yes',
+        values: 'https://fonts.google.com/, https://jqueryui.com/'
+      }
+    },
+    testIns: 'asdf',
+    license: 'MIT'
+  }
 // Function call to initialize app
 init();

@@ -1,21 +1,4 @@
-const answers = {
-    user: { githubUsername: 'kbario', email: 'kylebario1@gmail.com' },
-    title: 'Gener8aREADME',
-    description: "Gener8aREADME is a CLI application that dynamically creates README.md files for open-source projects based on a users input in the command line. It was created to take the guesswork out of making a README. README's are crucial aspects of github repositories, often being the make or break of a project. If your README doesn't describe your project well enough, comes across unprofessional, or does not answer the basic questions for usage, installation, and reporting bugs, people may not use or contribute to your project. Gener8aREADME has a professional template that makes sure all aspects of a good README are covered without you needing to create links and style markdown files. Gener8aREADME was created using JavaScript, Node.js, and the Node.js module 'inquirer'.",
-    installation: { code: 'git clone https://github.com/kbario/Gener8aREADME.git' },
-    usage: "Once installed on your local machine, open the repo in the command line and type `node index.js`. This begins Gener8aREADME's questions and at the end of the questions, a professional, complete README.md will appear in the thing.",
-    credits: {
-      contributors: { bool: 'yes' , values: 'kbario, tkimhofer'},
-      tutorials: { bool: 'yes', values: 'https://www.youtube.com/c/Fireship' },
-      thirdPartyAssets: { bool: 'no' }
-    },
-    testIns: 'using the test function',
-    license: 'MIT'
-  };
-
-const trueCreditKeys = Object.keys(answers.credits).filter((item) => {
-    return answers.credits[item].bool === 'yes'
-})
+// function that renders the head of the credit section based on user input
 
 function renderCreditHead(trueCreditKeys) {
     let desc;
@@ -36,12 +19,13 @@ function renderCreditHead(trueCreditKeys) {
     }
     if (desc !== undefined){
         return `## Credits
-${desc}`
+${desc}\n`
     } else {
         return ''
     }
 }
 
+// function to render the credit body based on user input
 function renderCreditSection(values, github){
     const arr = values.split(",").map(item => item.trim());;
     if (github === 'github'){
@@ -50,33 +34,6 @@ function renderCreditSection(values, github){
         return arrMap = arr.map(link => `- ${link}`)
     };
 };
-
-const thing = trueCreditKeys.map((item) => {
-    if (item === 'contributors'){
-        const list = renderCreditSection(answers.credits[item].values, 'github');
-        const listJ = list.join('\n');
-        return `\n### Contributors
-${listJ}`
-    } else if (item === 'tutorials') {  
-        const list = renderCreditSection(answers.credits[item].values, 'other');
-        const listJ = list.join('\n');
-        return `\n### Tutorials
-${listJ}`
-    } else if (item === 'thirdPartyAssets') {
-        const list = renderCreditSection(answers.credits[item].values, 'other');
-        const listJ = list.join('\n');
-        return `\n### Third-Party Assets
-${listJ}`
-    }
-});
-
-
-
-// const markdownValues = renderCreditSection(values, 'github')
-// const markdownValues1 = renderCreditSection(values1, 'other')
-// console.log(markdownValues)
-// console.log(markdownValues1)
-
 
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
@@ -94,40 +51,72 @@ function renderLicenseLink(license) {}
 function renderLicenseSection(license) {}
 
 // TODO: Create a function to generate markdown for README
-function generateMarkdown(data) {
-    const shield = renderLicenseBadge(data.license)
-    return `# ${data.title}
-    ![license](${shield})
-    ## Description
-    ${data.description}
-    
-    ## Table of Contents
-    
-    - [Installation](#installation)
-    - [Usage](#usage)
-    - [Credits](#credits)
-    - [Contribute](#contribute)
-    - [License](#license)
-    
-    ## Installation
-    ${data.title} can be installed from github using the following code in the command line:
+function generateMarkdown(answers) {
 
-    ${data.installation.code}
-    
-    ## Usage
-    ${data.usage}
-    
-    ${creditHead}
-    ${thing}
-    
-    ## Features
-    
-    ## How to Contribute
-    [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
-    
-    ## Tests
-    ## License
-    Licensed under the [${data.license}](LICENSE.txt) license.
+    // get the keys of credit that need to be added to credit section
+    const trueCreditKeys = Object.keys(answers.credits).filter((item) => {
+        return answers.credits[item].bool === 'yes'
+    });
+
+    // create the creadit header based on keys
+    const creditHead = renderCreditHead(trueCreditKeys);
+
+    // create credit sections based on keys
+    const creditList = trueCreditKeys.map((item) => {
+        if (item === 'contributors'){
+            const list = renderCreditSection(answers.credits[item].values, 'github');
+            const listJ = list.join('\n');
+            return `\n### Contributors\n${listJ}`
+        } else if (item === 'tutorials') {  
+            const list = renderCreditSection(answers.credits[item].values, 'other');
+            const listJ = list.join('\n');
+            return `\n### Tutorials\n${listJ}`
+        } else if (item === 'thirdPartyAssets') {
+            const list = renderCreditSection(answers.credits[item].values, 'other');
+            const listJ = list.join('\n');
+            return `\n### Third-Party Assets\n${listJ}`
+        }
+    });
+
+    const shield = renderLicenseBadge(answers.license)
+    return `# ${answers.title}
+![license](${shield})
+
+## Description
+${answers.description}
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [Contribute](#contribute)
+- [License](#license)
+
+## Installation
+${answers.title} can be installed from github using the following code in the command line:
+
+    ${answers.code}
+
+## Usage
+${answers.usage}
+
+${creditHead}
+${creditList}
+
+## Features
+
+## How to Contribute
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
+
+## Tests
+${answers.testIns}
+
+## Questions
+If you have any questions, feel free to ask me through [GitHub](https://github.com/${answers.user.github}/) or by [email](mailto:${answers.user.email})
+
+## License
+Licensed under the [${answers.license}](LICENSE.txt) license.
 `;
 }
 
