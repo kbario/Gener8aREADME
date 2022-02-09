@@ -1,3 +1,4 @@
+const extras = require('./writeLicense.js')
 // function that renders the head of the credit section based on user input
 
 function renderCreditHead(trueCreditKeys) {
@@ -27,7 +28,7 @@ ${desc}\n`
 
 // function to render the credit body based on user input
 function renderCreditSection(values, github){
-    const arr = values.split(",").map(item => item.trim());;
+    const arr = values.split(",").map(item => item.trim());
     if (github === 'github'){
         return arrMap = arr.map(user => `- [${user}](https://github.com/${user}/)`);
     } else if (github === 'other'){
@@ -35,16 +36,23 @@ function renderCreditSection(values, github){
     };
 };
 
+// create folder for imgs used in usage section
+
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
-    const shield = `https://img.shields.io/badge/license-${license}-green.svg)`;
-    return shield
+    if (license.includes('-')){
+        return shield = `https://img.shields.io/badge/license-${license.replace('-', '--')}-green.svg)`;
+    } else {
+        return shield = `https://img.shields.io/badge/license-${license}-green.svg)`;
+    }
 }
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
-function renderLicenseLink(license) {}
+function renderLicenseLink(license) {
+
+}
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
@@ -52,6 +60,10 @@ function renderLicenseSection(license) {}
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(answers) {
+    // generate license.md
+    extras.makeAssetsDir(`./${answers.user.github}'s_README`)
+    extras.makeAssetsDir(`./${answers.user.github}'s_README/assets`)
+    extras.writeLicense(answers.license, answers.year, answers.fullname, answers.user.github)
 
     // get the keys of credit that need to be added to credit section
     const trueCreditKeys = Object.keys(answers.credits).filter((item) => {
@@ -80,7 +92,7 @@ function generateMarkdown(answers) {
 
     const shield = renderLicenseBadge(answers.license)
     return `# ${answers.title}
-![license](${shield})
+[![license](${shield}](./LICENSE.md)
 
 ## Description
 ${answers.description}

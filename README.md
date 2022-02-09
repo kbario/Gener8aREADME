@@ -1,5 +1,5 @@
 # Gener8aREADME
-![license](https://img.shields.io/badge/license-MIT-green.svg))
+[![license](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE.md)
 
 ## Description
 Gener8aREADME is a CLI application that dynamically creates README.md files for open-source projects based on a users input in the command line. It was created to take the guesswork out of making a README. README's are crucial aspects of github repositories, often being the make or break of a project. If your README doesn't describe your project well enough, comes across unprofessional, or does not answer the basic questions for usage, installation, and reporting bugs, people may not use or contribute to your project. Gener8aREADME has a professional template that makes sure all aspects of a good README are covered without you needing to create links and style markdown files. Gener8aREADME was created using JavaScript, Node.js, and the Node.js module 'inquirer'.

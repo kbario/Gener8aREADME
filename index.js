@@ -76,13 +76,23 @@ const questions = [
             'Unlicense',
         ],
         default: 'MIT'
-    }, 
+    }, {   // if so, which ones
+        type: 'input',
+        name: 'fullname',
+        message: 'What is your full name?',
+        when(answers) {return answers.license === 'MIT' || answers.license === 'Apache-2.0'}
+    }, {   // if so, which ones
+        type: 'input',
+        name: 'year',
+        message: 'What year is it?',
+        when(answers) {return answers.license === 'MIT' || answers.license === 'Apache-2.0'}
+    },
 ];
 
 // TODO: Create a function to write README file
 function writeToFile(answers) {
     const gener8 = generateMarkdown(answers)
-    fs.writeFile('./README.md', gener8, (err) => err ? console.log(err) : console.log("Success!"))
+    fs.writeFile(`./${answers.user.github}'s_README/README.md`, gener8, (err) => err ? console.log(err) : console.log("Success!"))
 }
 
 // TODO: Create a function to initialize app
@@ -113,7 +123,9 @@ const answers = {
       }
     },
     testIns: 'asdf',
-    license: 'MIT'
+    license: 'MIT',
+    year: '2022',
+    fullname: 'Kyle Bario'
   }
 // Function call to initialize app
 init();
