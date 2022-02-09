@@ -96,13 +96,13 @@ ${answers.description}
 ## Installation
 ${answers.title} can be installed from github using the following code in the command line:
 
-    ${answers.code}
+    ${answers.installation}
 
 ## Usage
 ${answers.usage}
 
 ${creditHead}
-${creditList}
+${creditList.join('\n')}
 
 ## Features
 

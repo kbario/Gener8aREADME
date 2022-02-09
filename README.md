@@ -15,7 +15,7 @@ Gener8aREADME is a CLI application that dynamically creates README.md files for 
 ## Installation
 Gener8aREADME can be installed from github using the following code in the command line:
 
-    undefined
+    git clone https://github.com/kbario/Gener8aREADME.git
 
 ## Usage
 asdf
@@ -27,10 +27,12 @@ Below are lists of links to the github's of people that contributed, and tutoria
 ### Contributors
 - [kbario](https://github.com/kbario/)
 - [tkimhofer](https://github.com/tkimhofer/)
-- [wratten](https://github.com/wratten/),
+- [wratten](https://github.com/wratten/)
+
 ### Tutorials
 - https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA
-- https://www.youtube.com/watch?v=MBqS1kYzwTc,
+- https://www.youtube.com/watch?v=MBqS1kYzwTc
+
 ### Third-Party Assets
 - https://fonts.google.com/
 - https://jqueryui.com/
