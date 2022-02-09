@@ -7,7 +7,7 @@ const generateMarkdown = require('./utils/generateMarkdown.js')
 const questions = [
     {   // User's github user name
         type: 'input',
-        name: 'user.githubUsername',
+        name: 'user.github',
         message(answers){return `Hello, What's your GitHub username?`} ,   
     }, {   // User's email for questions
         type: 'input',
@@ -23,7 +23,7 @@ const questions = [
         message(answers){return `Describe ${answers.title}. \x1B[33mWhat Does it do? Why did you create it? What problem does it solve? What technologies did you use?\x1B[0m`},
     }, {  
         type: 'input', 
-        name: 'installation.code', 
+        name: 'installation', 
         message(answers){return `What code should be run to install ${answers.title} in the command line?`}
     }, {
         // TODO: usage information
@@ -37,7 +37,7 @@ const questions = [
         message(answers){return `Did other developers contribute to ${answers.title}?`},
     }, {   // if so what are their github usernames?
         type: 'input',
-        name: 'credits.contributors.usernames',
+        name: 'credits.contributors.values',
         message: 'What are their GitHub usernames? (comma separated)',
         when(answers) {return answers.credits.contributors.bool === 'yes'}
     }, {   // did you use any tutorials?
@@ -47,7 +47,7 @@ const questions = [
         message(answers){return `Did you follow any tutorials while creating ${answers.title}?`},
     }, {   // if so, what are their urls?
         type: 'input',
-        name: 'credits.tutorials.url',
+        name: 'credits.tutorials.values',
         message: 'What are the URLs to these tutorials? (separated with a comma if multiple)',
         when(answers) {return answers.credits.tutorials.bool === 'yes'}
     }, {   // did you use any assets?
@@ -57,7 +57,7 @@ const questions = [
         message(answers){return `Did you use any third-party assets to create ${answers.title}?`},
     }, {   // if so, which ones
         type: 'input',
-        name: 'credits.thirdPartyAssets.url',
+        name: 'credits.thirdPartyAssets.values',
         message: 'What are the URLs to these assets? (separated with a comma if multiple)',
         when(answers) {return answers.credits.thirdPartyAssets.bool === 'yes'}
     }, {
@@ -80,8 +80,8 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(data) {
-    const gener8 = generateMarkdown(data)
+function writeToFile(answers) {
+    const gener8 = generateMarkdown(answers)
     fs.writeFile('./README.md', gener8, (err) => err ? console.log(err) : console.log("Success!"))
 }
 
@@ -91,7 +91,7 @@ function init() {
     .prompt(questions)
     .then((answers) => {
         console.log(answers)
-        // writeToFile(answers)
+        writeToFile(answers)
     });
 }
 
