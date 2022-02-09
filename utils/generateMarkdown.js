@@ -19,13 +19,7 @@ function generateMarkdown(data) {
     return `# ${data.title}
     ![license](${shield})
     ## Description
-    
-    #### What?
-    ${data.title} is a ${data.description.thing} ${data.description.what}. 
-    #### Why?
-    ${data.description.why}. 
-    #### How?
-    ${data.description.how}.
+    ${data.description}
     
     ## Table of Contents
     
@@ -36,10 +30,10 @@ function generateMarkdown(data) {
     - [License](#license)
     
     ## Installation
-    ${data.title} can be installed from ${data.installation.platform} using the following code:
-    \```
+    ${data.title} can be installed from github using the following code in the command line:
+
     ${data.installation.code}
-    \```
+    
     ## Usage
     ${data.usage}
     ## Credits

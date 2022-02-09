@@ -5,54 +5,26 @@ const generateMarkdown = require('./utils/generateMarkdown.js')
 
 // TODO: Create an array of questions for user input
 const questions = [
-    {   // User's name
-        type: 'input',
-        name: 'user.name',
-        message: 'Hello, What\'s your name?',   
-    }, {   // User's github user name
+    {   // User's github user name
         type: 'input',
         name: 'user.githubUsername',
-        message(answers){return `What's your GitHub username, ${answers.user.name}?`} ,   
+        message(answers){return `Hello, What's your GitHub username?`} ,   
     }, {   // User's email for questions
         type: 'input',
         name: 'user.email',
-        message: 'And best email address to contact you by?',
+        message: 'And your email address to go on the README?',
     }, {   // project's title for readme title 
         type: 'input',
         name: 'title',
         message: 'What is your project\'s name?',
-    }, {   // what type of software is it?
-        type: 'list',
-        name: 'description.thing',
-        choices:['CLI', "Website", 'other'],
-        message(answers){return `What is ${answers.title}?`},
-    }, {   // if software === other, ask them to write it
-        type: 'input',
-        name: 'description.thing',
-        choices:['CLI', "Website", 'other'],
-        message(answers){return `Elaborate, what is ${answers.title}?`},
-        when(answers){return answers.description.thing === 'other'}
     }, {   // ask what it does
         type: 'input',
-        name: 'description.what',
-        message(answers){return `What does ${answers.title} do? \x1B[33mFinish this sentence:\x1B[0m ${answers.title} is a ${answers.description.thing}...`},
-    }, {    // why did you create it?
-        type: 'input',
-        name: 'description.why',
-        message(answers){return `Why did you create ${answers.title}? What problems does it solve?`},
-    }, {   // what technologies did you use?
-        type: 'input',
-        name: 'description.how',
-        message(answers){return `What technologies did you use to make it? \x1B[33mFinish this sentence:\x1B[0m ${answers.title} is built using...`},
-    }, {   // the platform the code can be got from
-        type: 'list', 
-        name: 'installation.platform', 
-        choices: ['npm', 'github'],
-        message(answers){return `What platform can ${answers.title} accessed from?`},
+        name: 'description',
+        message(answers){return `Describe ${answers.title}. \x1B[33mWhat Does it do? Why did you create it? What problem does it solve? What technologies did you use?\x1B[0m`},
     }, {  
         type: 'input', 
         name: 'installation.code', 
-        message: 'What code should be run to install it?',
+        message(answers){return `What code should be run to install ${answers.title} in the command line?`}
     }, {
         // TODO: usage information
         type: 'input',
