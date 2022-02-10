@@ -20,7 +20,7 @@ function renderCreditHead(trueCreditKeys) {
     }
     if (desc !== undefined){
         return `## Credits
-${desc}\n`
+${desc}`
     } else {
         return ''
     }
@@ -61,9 +61,10 @@ function renderLicenseSection(license) {}
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(answers) {
     // generate license.md
-    extras.makeAssetsDir(`./${answers.user.github}'s_README`)
-    extras.makeAssetsDir(`./${answers.user.github}'s_README/assets`)
-    extras.writeLicense(answers.license, answers.year, answers.fullname, answers.user.github)
+    extras.makeAssetsDir(`./${answers.title}'s_README`)
+    extras.makeAssetsDir(`./${answers.title}'s_README/assets`)
+    extras.writeLicense(answers.license, answers.year, answers.fullname, answers.title)
+    extras.writeCC(answers.title)
 
     // get the keys of credit that need to be added to credit section
     const trueCreditKeys = Object.keys(answers.credits).filter((item) => {
@@ -113,22 +114,23 @@ ${answers.title} can be installed from github using the following code in the co
 ## Usage
 ${answers.usage}
 
-${creditHead}
-${creditList.join('\n')}
-
 ## Features
 
 ## How to Contribute
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](./code_of_conduct.md)
 
 ## Tests
 ${answers.testIns}
 
 ## Questions
-If you have any questions, feel free to ask me through [GitHub](https://github.com/${answers.user.github}/) or by [email](mailto:${answers.user.email})
+If you have any questions, feel free to contact me through my [GitHub](https://github.com/${answers.user.github}/) or [email me](mailto:${answers.user.email}).
+
+${creditHead}
+${creditList.join('\n')}
 
 ## License
-Licensed under the [${answers.license}](LICENSE.txt) license.
+Licensed under the [${answers.license}](./LICENSE.txt) license.
+
 `;
 }
 

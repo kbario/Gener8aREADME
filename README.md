@@ -18,11 +18,10 @@ Gener8aREADME can be installed from github using the following code in the comma
     git clone https://github.com/kbario/Gener8aREADME.git
 
 ## Usage
-asdf
+
 
 ## Credits
 Below are lists of links to the github's of people that contributed, and tutorials and third-party assets that were used to create this project.
-
 
 ### Contributors
 - [kbario](https://github.com/kbario/)
