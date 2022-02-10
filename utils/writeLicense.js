@@ -1,5 +1,4 @@
 const fs = require('fs')
-const { title } = require('process')
 
 function writeLicense(license, year, fullname, github) { 
     if (license === 'Unlicense') {
@@ -26,7 +25,7 @@ OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
-For more information, please refer to <https://unlicense.org>`, (err) => err ? console.log(err) : console.log("License Written"))
+For more information, please refer to <https://unlicense.org>`, (err) => err ? console.log(err) : console.log("License \x1B[1;32m[√]\x1B[0m"))
     } else if (license === 'MIT') {
         fs.writeFile(`./${github}'s_README/LICENSE.md`, `MIT License
 
@@ -48,7 +47,7 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.`, (err) => err ? console.log(err) : console.log("License Written"))
+SOFTWARE.`, (err) => err ? console.log(err) : console.log("License \x1B[1;32m[√]\x1B[0m"))
     } else if (license === 'Apache-2.0'){
         fs.writeFile(`./${github}'s_README/LICENSE.md`, ` Apache License
         Version 2.0, January 2004
@@ -250,7 +249,7 @@ Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
-limitations under the License.`, (err) => err ? console.log(err) : console.log("License Written"))
+limitations under the License.`, (err) => err ? console.log(err) : console.log("License \x1B[1;32m[√]\x1B[0m"))
     } else if (license === "MPL-2.0"){
         fs.writeFile(`./${github}'s_README/LICENSE.md`, `Mozilla Public License Version 2.0
 ==================================
@@ -624,7 +623,7 @@ Exhibit B - "Incompatible With Secondary Licenses" Notice
 ---------------------------------------------------------
 
     This Source Code Form is "Incompatible With Secondary Licenses", as
-    defined by the Mozilla Public License, v. 2.0.`, (err) => err ? console.log(err) : console.log("License Written"))
+    defined by the Mozilla Public License, v. 2.0.`, (err) => err ? console.log(err) : console.log("License \x1B[1;32m[√]\x1B[0m"))
     }
 }
 
@@ -639,7 +638,7 @@ function makeAssetsDir(folderPath){
 }
 
 function writeCC(title) {
-    fs.writeFile(`./${title}'s_README/code_of_conduct.md`, `
+    fs.writeFile(`./${title}'s_README/CODE_OF_CONDUCT.md`, `
 # Contributor Covenant Code of Conduct
 
 ## Our Pledge
@@ -772,7 +771,7 @@ For answers to common questions about this code of conduct, see the FAQ at
 [Mozilla CoC]: https://github.com/mozilla/diversity
 [FAQ]: https://www.contributor-covenant.org/faq
 [translations]: https://www.contributor-covenant.org/translations
-`, (err) => err ? console.log(err) : console.log("Code of Conduct Written"))
+`, (err) => err ? console.log(err): console.log('Code of Conduct \x1B[1;32m[√]\x1B[0m'))
 }
 
 module.exports = {

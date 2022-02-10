@@ -24,26 +24,26 @@ As Gener8aREADME is a CLI application, it is run through the terminal/powershell
 
     node index.js
 
-![Initialise](./assets/imgone.png)
+![Initialise](./assets/imgOne.png)
 
 
 ### Dynamic Questions
 
 Each question that Gener8aREADME asks is colour-coded for ease of use. Green writing is general purpose. Yellow questions are able to be styled and customised with markdown styling. White questions are basic and you should just give plain answers, no styling. And blue questions allow images to be added after creating the README.
 
-![Dynamic Questions](./assets/imgtwo.png)
+![Dynamic Questions](./assets/imgTwo.png)
 
 
 
 
 ## How to Contribute
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](./code_of_conduct.md)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](./CODE_OF_CONDUCT.md)
 
 ## Tests
 asdf
 
 ## Questions
-If you have any questions, feel free to contact me through my [GitHub](https://github.com/kbario/) or [email me](mailto:kylebario1@gmail.com).
+If you have any questions, feel free to contact me through my [GitHub](https://github.com/kbario/) or [Email me](mailto:kylebario1@gmail.com).
 
 ## Credits
 Below are lists of links to the github's of people that contributed, and tutorials that were used to create this project.
