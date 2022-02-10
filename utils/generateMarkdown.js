@@ -1,39 +1,5 @@
 //  access the custom module writeLicense.js
 const extras = require('./writeLicense.js')
-const answers = {
-    user: { github: 'kbario', email: 'kylebario1@gmail.com' },
-    title: 'Gener8aREADME',
-    description: 'Gener8aREADME is a CLI application designed to dynamically create a README.md file for your open source github repository. It does so in a professional manner, covering all the bases so that you can rest assured that your README is of a high-quality, answers all basic question, and encourages people to contribute. \\nGener8aREADME was developed using JavaScript, Node.js and inquirer, a Node.js module.',
-    installation: 'git clone https://github.com/kbario/Gener8aREADME.git',
-    usage: {
-      One: {
-        title: 'Initialise',
-        desc: 'As Gener8aREADME is a CLI application, it is run through the terminal/powershell using node.js. To run it, use the code:',
-        code: 'node index.js',
-        img: 'yes'
-      },
-      Two: {
-        bool: 'yes',
-        title: 'Dynamic Questions',
-        desc: 'Each question that Gener8aREADME asks is colour-coded for ease of use. Green writing is general purpose. Yellow questions are able to be styled and customised with markdown styling. White questions are basic and you should just give plain answers, no styling. And blue questions allow images to be added after creating the README.',
-        code: '',
-        img: 'yes'
-      },
-      Three: { bool: 'no' }
-    },
-    credits: {
-      contributors: { bool: 'yes', values: 'kbario, tkimhofer, wratten' },
-      tutorials: {
-        bool: 'yes',
-        values: 'https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA, https://www.youtube.com/watch?v=MBqS1kYzwTc'
-      },
-      thirdPartyAssets: { bool: 'no' }
-    },
-    testIns: 'asdf',
-    license: 'MIT',
-    fullname: 'Kyle Bario',
-    year: '2022'
-  }
 
 // credit section
 // function that renders the head of the credit section based on user input
@@ -73,34 +39,27 @@ function renderCreditSection(values, github){
 };
 
 
-// usage section
-const usageKeys = Object.keys(answers.usage).filter((item) => {
-    if(Object.keys(answers.usage[item]).includes('bool')) {
-        return answers.usage[item].bool === 'yes'
-    } else {
-        return item
-    }
-});
+function checkContributions(answers){
 
-const usageRender = usageKeys.map(item => {
-    const secondKeys = Object.keys(answers.usage[item]).filter(item1 => {
-        return answers.usage[item][item1] !== '' && item1 !== 'bool'
-    });
-    const things = secondKeys.map(item1 => {
-        if (item1 === 'title'){
-            return `### ${answers.usage[item][item1]}\n`
-        } else if (item1 === 'desc') {
-            return `${answers.usage[item][item1]}\n`
-        } else if (item1 === 'code') {
-            return `    ${answers.usage[item][item1]}\n`
-        } else if (item1 === 'img') {
-            return `![${answers.usage[item].title}](./assets/img${item}.png)\n`
-        }
-    })
-    return things.join('')
-});
+    if (answers.contribute.standard === 'yes'){
+        const contribute = `\n\n## Contribute
 
-// create folder for imgs used in usage section
+All contributions to ${answers.title} are greatly appreciated and contributing is one of the many amazing things about open-source software.\n\nTo contribute to ${answers.title}, all we ask is that you're empathic and supportive towards other developers and follow the standard contribution guidelines. Click the banner below for more information.
+        
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](./CODE_OF_CONDUCT.md)\n\n`
+        extras.writeCcStandard(answers.title, answers.user.email)
+        return contribute
+    } else if (answers.contribute.own === 'yes'){
+        const contribute = `\n\n## Contribute
+
+answers.contribute.custom\n\n`;
+        return contribute
+    } else {const contribute = '';
+        return contribute
+    };
+}
+
+
 
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
@@ -125,11 +84,10 @@ function renderLicenseSection(license) {}
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(answers) {
     // generate license.md
-    extras.makeAssetsDir(`./${answers.title}'s_README`)
-    extras.makeAssetsDir(`./${answers.title}'s_README/assets`)
-    extras.writeLicense(answers.license, answers.year, answers.fullname, answers.title)
-    extras.writeCC(answers.title)
-
+    extras.makeAssetsDir(`./${answers.title}'s_README`);
+    extras.makeAssetsDir(`./${answers.title}'s_README/assets`);
+    extras.writeLicense(answers.license, answers.year, answers.fullname, answers.title);
+    const contribute = checkContributions(answers);
     // get the keys of credit that need to be added to credit section
     const trueCreditKeys = Object.keys(answers.credits).filter((item) => {
         return answers.credits[item].bool === 'yes'
@@ -193,22 +151,21 @@ ${answers.description}
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Credits](#credits)
 - [Contribute](#contribute)
+- [Tests](#tests)
+- [Questions](#questions)
+- [Credits](#credits)
 - [License](#license)
 
 ## Installation
-${answers.title} can be installed from github using the following code in the command line:
+${answers.installation.desc}
 
-    ${answers.installation}
+    ${answers.installation.code}
 
 ## Usage
+
 ${usageRender.join('\n')}
-
-
-## How to Contribute
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](./CODE_OF_CONDUCT.md)
-
+${contribute}
 ## Tests
 ${answers.testIns}
 
