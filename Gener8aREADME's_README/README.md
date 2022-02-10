@@ -18,9 +18,23 @@ Gener8aREADME can be installed from github using the following code in the comma
     git clone https://github.com/kbario/Gener8aREADME.git
 
 ## Usage
-[object Object]
+### Initialise
 
-## Features
+As Gener8aREADME is a CLI application, it is run through the terminal/powershell using node.js. To run it, use the code:
+
+    node index.js
+
+![Initialise](./assets/imgone.png)
+
+
+### Dynamic Questions
+
+Each question that Gener8aREADME asks is colour-coded for ease of use. Green writing is general purpose. Yellow questions are able to be styled and customised with markdown styling. White questions are basic and you should just give plain answers, no styling. And blue questions allow images to be added after creating the README.
+
+![Dynamic Questions](./assets/imgtwo.png)
+
+
+
 
 ## How to Contribute
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](./code_of_conduct.md)

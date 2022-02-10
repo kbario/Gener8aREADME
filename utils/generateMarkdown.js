@@ -1,6 +1,42 @@
+//  access the custom module writeLicense.js
 const extras = require('./writeLicense.js')
-// function that renders the head of the credit section based on user input
+const answers = {
+    user: { github: 'kbario', email: 'kylebario1@gmail.com' },
+    title: 'Gener8aREADME',
+    description: 'Gener8aREADME is a CLI application designed to dynamically create a README.md file for your open source github repository. It does so in a professional manner, covering all the bases so that you can rest assured that your README is of a high-quality, answers all basic question, and encourages people to contribute. \\nGener8aREADME was developed using JavaScript, Node.js and inquirer, a Node.js module.',
+    installation: 'git clone https://github.com/kbario/Gener8aREADME.git',
+    usage: {
+      One: {
+        title: 'Initialise',
+        desc: 'As Gener8aREADME is a CLI application, it is run through the terminal/powershell using node.js. To run it, use the code:',
+        code: 'node index.js',
+        img: 'yes'
+      },
+      Two: {
+        bool: 'yes',
+        title: 'Dynamic Questions',
+        desc: 'Each question that Gener8aREADME asks is colour-coded for ease of use. Green writing is general purpose. Yellow questions are able to be styled and customised with markdown styling. White questions are basic and you should just give plain answers, no styling. And blue questions allow images to be added after creating the README.',
+        code: '',
+        img: 'yes'
+      },
+      Three: { bool: 'no' }
+    },
+    credits: {
+      contributors: { bool: 'yes', values: 'kbario, tkimhofer, wratten' },
+      tutorials: {
+        bool: 'yes',
+        values: 'https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA, https://www.youtube.com/watch?v=MBqS1kYzwTc'
+      },
+      thirdPartyAssets: { bool: 'no' }
+    },
+    testIns: 'asdf',
+    license: 'MIT',
+    fullname: 'Kyle Bario',
+    year: '2022'
+  }
 
+// credit section
+// function that renders the head of the credit section based on user input
 function renderCreditHead(trueCreditKeys) {
     let desc;
     if (trueCreditKeys.includes('contributors') && trueCreditKeys.includes('tutorials') && trueCreditKeys.includes('thirdPartyAssets')) {
@@ -35,6 +71,34 @@ function renderCreditSection(values, github){
         return arrMap = arr.map(link => `- ${link}`)
     };
 };
+
+
+// usage section
+const usageKeys = Object.keys(answers.usage).filter((item) => {
+    if(Object.keys(answers.usage[item]).includes('bool')) {
+        return answers.usage[item].bool === 'yes'
+    } else {
+        return item
+    }
+});
+
+const usageRender = usageKeys.map(item => {
+    const secondKeys = Object.keys(answers.usage[item]).filter(item1 => {
+        return answers.usage[item][item1] !== '' && item1 !== 'bool'
+    });
+    const things = secondKeys.map(item1 => {
+        if (item1 === 'title'){
+            return `### ${answers.usage[item][item1]}\n`
+        } else if (item1 === 'desc') {
+            return `${answers.usage[item][item1]}\n`
+        } else if (item1 === 'code') {
+            return `    ${answers.usage[item][item1]}\n`
+        } else if (item1 === 'img') {
+            return `![${answers.usage[item].title}](./assets/img${item}.png)\n`
+        }
+    })
+    return things.join('')
+});
 
 // create folder for imgs used in usage section
 
@@ -91,6 +155,33 @@ function generateMarkdown(answers) {
         }
     });
 
+    // create the usage section based on keys provided
+    const usageKeys = Object.keys(answers.usage).filter((item) => {
+        if(Object.keys(answers.usage[item]).includes('bool')) {
+            return answers.usage[item].bool === 'yes'
+        } else {
+            return item
+        }
+    });
+    
+    const usageRender = usageKeys.map(item => {
+        const secondKeys = Object.keys(answers.usage[item]).filter(item1 => {
+            return answers.usage[item][item1] !== '' && item1 !== 'bool'
+        });
+        const things = secondKeys.map(item1 => {
+            if (item1 === 'title'){
+                return `### ${answers.usage[item][item1]}\n\n`
+            } else if (item1 === 'desc') {
+                return `${answers.usage[item][item1]}\n\n`
+            } else if (item1 === 'code') {
+                return `    ${answers.usage[item][item1]}\n\n`
+            } else if (item1 === 'img') {
+                return `![${answers.usage[item].title}](./assets/img${item}.png)\n\n`
+            }
+        })
+        return things.join('')
+    });
+
     const shield = renderLicenseBadge(answers.license)
     return `# ${answers.title}
 [![license](${shield}](./LICENSE.md)
@@ -112,9 +203,8 @@ ${answers.title} can be installed from github using the following code in the co
     ${answers.installation}
 
 ## Usage
-${answers.usage}
+${usageRender.join('\n')}
 
-## Features
 
 ## How to Contribute
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](./code_of_conduct.md)
@@ -123,7 +213,7 @@ ${answers.usage}
 ${answers.testIns}
 
 ## Questions
-If you have any questions, feel free to contact me through my [GitHub](https://github.com/${answers.user.github}/) or [email me](mailto:${answers.user.email}).
+If you have any questions, feel free to contact me through my [GitHub](https://github.com/${answers.user.github}/) or [Email me](mailto:${answers.user.email}).
 
 ${creditHead}
 ${creditList.join('\n')}
