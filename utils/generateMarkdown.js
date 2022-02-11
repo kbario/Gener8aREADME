@@ -255,6 +255,8 @@ ${credits}
 ## License
 Licensed under the [${answers.license}](./LICENSE.txt) license.
 
+---
+This README was created with [Gener8aREADME](https://github.com/kbario/Gener8aREADME).
 `;
 }
 

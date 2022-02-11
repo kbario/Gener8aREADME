@@ -33,7 +33,7 @@ const questions = [
         // TODO: usage information
         type: 'input',
         name: 'usage.One.title',
-        message: "\x1B[1;32mUSAGE: You can put up to THREE usage sections. Each allows space for a title, description, code block and image of the specific usage/feature.\n\x1B[0mWhat title would you give this section? (First is typically code to start/run the application, i.e. 'Start-up' or 'Initialise')",
+        message: "\x1B[1;32mUSAGE: You can put up to THREE usage sections. Each allows space for a title, description, code block and image of the specific usage/feature.\n\x1B[33mWhat title would you give this section?\x1B[0m (First is typically code to start/run the application, i.e. 'Start-up' or 'Initialise')",
     }, {
         // TODO: usage information
         type: 'input',
@@ -49,7 +49,7 @@ const questions = [
         type: 'list',
         name: 'usage.One.img',
         choices: ['yes', 'no'],
-        message: '\x1B[034mWould you like to add an image to this usage section? \x1B[0mIf yes, add it to assets file name "img1.png".',
+        message: '\x1B[034mWould you like to add an image to this usage section? \x1B[0mIf yes, add it to assets file name "imgOne.png".',
     }, {
         // TODO: usage information
         type: 'list',
@@ -60,7 +60,7 @@ const questions = [
         // TODO: usage information
         type: 'input',
         name: 'usage.Two.title',
-        message: "What title would you like to give this section? (ideas: 'Main Feature', 'Using Output')",
+        message: "\x1B[033mWhat title would you like to give this section?\x1B[0m (ideas: 'Main Feature', 'Using Output')",
     }, {
         // TODO: usage information
         type: 'input',
@@ -76,7 +76,7 @@ const questions = [
         type: 'list',
         name: 'usage.Two.img',
         choices: ['yes', 'no'],
-        message: '\x1B[034mWould you like to add an image to this usage section? \x1B[0mIf yes, add it to assets file name "img2.png".',
+        message: '\x1B[034mWould you like to add an image to this usage section? \x1B[0mIf yes, add it to assets file name "imgTwo.png".',
     }, {
         // TODO: usage information
         type: 'list',
@@ -87,7 +87,7 @@ const questions = [
         // TODO: usage information
         type: 'input',
         name: 'usage.Three.title',
-        message: "What title would you like to give this section?",
+        message: "\x1B[033mWhat title would you like to give this section?\x1B[0m",
     }, {
         // TODO: usage information
         type: 'input',
@@ -103,7 +103,7 @@ const questions = [
         type: 'list',
         name: 'usage.Three.img',
         choices: ['yes', 'no'],
-        message: '\x1B[034mWould you like to add an image to this usage section? \x1B[0mIf yes, add it to assets file name "img3.png".',
+        message: '\x1B[034mWould you like to add an image to this usage section? \x1B[0mIf yes, add it to assets file name "imgThree.png".',
     }, {   // did anyone help you ?
         type: 'list',
         name: 'credits.contributors.bool',
@@ -138,7 +138,7 @@ const questions = [
         // TODO: test instructions
         type: 'input', 
         name: 'testIns',
-        message: 'How code can people use to test this project?',
+        message: '\x1B[33mHow code can people use to test this project?\x1B[0m',
     }, {   // What license?
         type: 'list',
         name: 'license',
@@ -188,7 +188,7 @@ function writeToFile(answers) {
 
 // TODO: Create a function to initialize app
 function init() {
-    console.log('\n\x1B[1;32mWelcome to Gener8aREADME!\n\x1B[0;32mI dynamically generate an AMAZING README.md file for open-source GitHub repositories.\nI ask you questions, and your answers dictate the created README.\n\n\x1B[33m     Yellow questions utilise markdown styling in the answers to customise the README.\n\x1B[39m     Neutral (black/white) question do not not utilse said styling.\n\x1B[0;34m     Blue questions indicate that images can be inserted in this section.\n\n\x1b[32mI output a file called \x1B[1;32m<your-project\'s-title>\'s_README\x1B[0;32m containing everything you\'ll need.\n\x1B[0;32mI creates a license and code of conduct file if you want me to.\n\x1b[34mIf you answer yes to a blue quesiton, add the images into the assets folder.\nName the images "img<One, Two or Three>.png" based on the section you want them in.\n\x1b[32mOnce created, move the contents of your folder into your github repo.\n\x1B[1;31mYou can quit me by pressing `Ctrl+C`, but all answers will be lost.\n\x1B[1;32mAnd it\'s as easy as that! Let\'s get started!\x1B[0m')
+    console.log('\n\x1B[1;32mWelcome to Gener8aREADME!\n\x1B[0;32mI dynamically generate an AMAZING README.md file for open-source GitHub repositories.\nI ask you questions, and your answers dictate the created README.\n\n\x1B[33m     Yellow questions utilise markdown styling in the answers to customise the README.\n\x1B[39m     Neutral (black/white) question do not not utilse said styling.\n\x1B[0;34m     Blue questions indicate that images can be inserted in this section.\n\n\x1b[32mI output a file called \x1B[1;32m<your-project\'s-title>\'s_README\x1B[0;32m containing everything you\'ll need.\n\x1B[0;32mI create a license and code of conduct file if you want me to.\n\x1b[34mIf you answer yes to a blue quesiton, add the images into the assets folder.\nName the images "img<One, Two or Three>.png" based on the section you want them in.\n\x1b[32mOnce created, move the contents of your folder into your github repo.\n\x1B[1;31mYou can quit me by pressing `Ctrl+C`, but all answers will be lost.\n\x1B[1;32mAnd it\'s as easy as that! Let\'s get started!\x1B[0m')
     inquirer
     .prompt(questions)
     .then((answers) => {
