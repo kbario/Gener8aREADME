@@ -49,7 +49,7 @@ const questions = [
         type: 'list',
         name: 'usage.One.img',
         choices: ['yes', 'no'],
-        message: '\x1B[034mWould you like to add an image to this usage code? \x1B[0mIf yes, add it to assets file name "img1.png".',
+        message: '\x1B[034mWould you like to add an image to this usage section? \x1B[0mIf yes, add it to assets file name "img1.png".',
     }, {
         // TODO: usage information
         type: 'list',
@@ -76,7 +76,7 @@ const questions = [
         type: 'list',
         name: 'usage.Two.img',
         choices: ['yes', 'no'],
-        message: '\x1B[034mWould you like to add an image to this usage code? \x1B[0mIf yes, add it to assets file name "img2.png".',
+        message: '\x1B[034mWould you like to add an image to this usage section? \x1B[0mIf yes, add it to assets file name "img2.png".',
     }, {
         // TODO: usage information
         type: 'list',
@@ -103,7 +103,7 @@ const questions = [
         type: 'list',
         name: 'usage.Three.img',
         choices: ['yes', 'no'],
-        message: '\x1B[034mWould you like to add an image to this usage code? \x1B[0mIf yes, add it to assets file name "img3.png".',
+        message: '\x1B[034mWould you like to add an image to this usage section? \x1B[0mIf yes, add it to assets file name "img3.png".',
     }, {   // did anyone help you ?
         type: 'list',
         name: 'credits.contributors.bool',
@@ -138,7 +138,7 @@ const questions = [
         // TODO: test instructions
         type: 'input', 
         name: 'testIns',
-        message: 'How can people test this project?',
+        message: 'How code can people use to test this project?',
     }, {   // What license?
         type: 'list',
         name: 'license',
@@ -188,14 +188,59 @@ function writeToFile(answers) {
 
 // TODO: Create a function to initialize app
 function init() {
-    console.log('\n\x1B[1;32mWelcome to Gener8aREADME!\n\x1B[0;32mThis app dynamically generates a README.md file for your open-source GitHub repository based on answers you give to questions.\nThis app outputs a file called \x1B[1;32m<your-project\'s-title>\'s_README\x1B[0;32m which contains the README.md and other accompanying files created.\n\x1B[33mYellow questions utilise markdown styling in the answers to customise the README. Use ` \\n\\n ` for a line break.\n\x1B[39mBut black/white question do not not utilse said styling.\n\x1B[0;34mBlue questions indicate that after the README is created, you can add images to the assets folder in \x1B[1;34m<your-project\'s-title>\'s_README\x1B[0;34m titled "imgOne.png", "imgTwo.png", etc. in order of input and they will automatically appear in the README.md.\n\x1B[1;31mYou can quit Gener8aREADME at anytime by pressing `Ctrl+C`, but all answers will be lost.\n\x1B[0;32mGener8aREADME will create a license and code of conduct file based on your input also.\nOnce created, move the contents of \x1B[1;32m<your-project\'s-title>\'s_README\x1B[0;32m into your github repo.\n\x1B[1;32mAnd it\'s as easy as that! Let\'s get started!\x1B[0m')
-    inquirer
-    .prompt(questions)
-    .then((answers) => {
-        // console.log(answers)
+    console.log('\n\x1B[1;32mWelcome to Gener8aREADME!\n\x1B[0;32mI dynamically generate an AMAZING README.md file for open-source GitHub repositories.\nI ask you questions, and your answers dictate the created README.\n\n\x1B[33m     Yellow questions utilise markdown styling in the answers to customise the README.\n\x1B[39m     Neutral (black/white) question do not not utilse said styling.\n\x1B[0;34m     Blue questions indicate that images can be inserted in this section.\n\n\x1b[32mI output a file called \x1B[1;32m<your-project\'s-title>\'s_README\x1B[0;32m containing everything you\'ll need.\n\x1B[0;32mI creates a license and code of conduct file if you want me to.\n\x1b[34mIf you answer yes to a blue quesiton, add the images into the assets folder.\nName the images "img<One, Two or Three>.png" based on the section you want them in.\n\x1b[32mOnce created, move the contents of your folder into your github repo.\n\x1B[1;31mYou can quit me by pressing `Ctrl+C`, but all answers will be lost.\n\x1B[1;32mAnd it\'s as easy as that! Let\'s get started!\x1B[0m')
+    // inquirer
+    // .prompt(questions)
+    // .then((answers) => {
+    //     console.log(answers)
         writeToFile(answers)
-    });
+    // });
 };
+
+const answers = {
+    user: { github: 'kbario', email: 'kylebario1@gmail.com' },
+    title: 'Gener8aREADME',
+    description: "Gener8aREADME dynamically creates a README.md file for your open-source github repository based on inputs you give in the command line.\nI created Gener8aREADME because README's are crucial aspects of an open-source repo because it is the first thing people look at when viewing your repo, giving an insight into your professionalism as a developer, your skills as a programmer and the tools that other developers need to contribute to the project. If any of these things are not up to standard, you risk people not contributing to your project or others not taking you seriously.\nBy automating the production of a README from a professional template - such as that that Gener8aREADME works off of - you garuantee that all the bases of a good README are covered, allowing you to focus on the developing of the project.\nGener8aREADME was developed using JavaScript, Node.js and Inquirer.",
+    installation: {
+      desc: 'You can clone the repo of Gnere8aREADME from my github. Navigate to the directory/file you wish to store the repo in the command line and run the following code:',
+      code: 'git clone https://github.com/kbario/Gener8aREADME.git'
+    },
+    usage: {
+      One: {
+        title: 'Create a README',
+        desc: 'To create a README using Gener8aREADME, navigate to the directory of the repo you cloned on your local machine and run the code below. This will initialise Gener8aREADME and you should see the greeting message below.',
+        code: 'node index.js',
+        img: 'yes'
+      },
+      Two: {
+        bool: 'yes',
+        title: 'Colour-Coded Questions',
+        desc: 'The questions of Gener8aREADME are coloured based on what features they offer you.\n- **Neutral** (black and white) questions are exactly that, there is not functionality to these qustions.\n- **Yellow** questions indicate that you can add markdown-like styling to the README in these sections to further customise the file.\n- **Blue** questions indicate that - if answered yes - you can add files to the assets folder created with the README and they will automatically be added to the README. This is a useful feature as you can add images for the usage, etc. to futher engage readers about your project.\n - Finally, **Green** text is also used in the application to indicate introductions to sections and general information.',
+        code: '',
+        img: 'yes'
+      },
+      Three: {
+        bool: 'yes',
+        title: "Using Gener8aREADME's Output",
+        desc: "Once you've answered all the quesitons, the application will output a file titled <your-project's-title>'s_README. Inside this file will be your README.md, your License that you chose, a code of conduct file (optional), and an assets file. If you answered yes to a blue question or questions, add the associated images in this file named 'imgOne.png', etc. based on how many blue questions you said yes to. NOTE: if you added an image to section 1 and 3 of usage but not two, the images will need to be named imgOne.png and imgThree.png.\nFrom there, your README is set up, and you can add it along with the other accompanying files directly into your github repo. **Happy README-ing!** :)",
+        code: '',
+        img: 'yes'
+      }
+    },
+    credits: {
+      contributors: { bool: 'no' },
+      tutorials: {
+        bool: 'yes',
+        values: 'https://pakstech.com/blog/inquirer-js/, https://tforgione.fr/posts/ansi-escape-codes/, https://askubuntu.com/questions/533302/how-to-write-literal-n-in-a-file-as-text-from-the-terminal, https://choosealicense.com/licenses/, https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide'
+      },
+      thirdPartyAssets: { bool: 'no' }
+    },
+    testIns: 'git clone https://github.com/kbario/Gener8aREADME.git\nnode index.js',
+    license: 'MIT',
+    fullname: 'Kyle Bario',
+    year: '2022',
+    contribute: { standard: 'yes' }
+  }
 
 // Function call to initialize app
 init();
