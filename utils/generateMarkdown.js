@@ -3,12 +3,9 @@ const extras = require('./writeLicense.js')
 
 // function that replaces the line breaks in descriptions to markdown readable line breaks
 function addLineBreaks(input){
-    return input.replaceAll('\n', '\n\n')
+    return input.replaceAll('%nl%', '\n\n').replaceAll('%nll%', '\n').replaceAll('%nlc%', '\n\n    ')
 }
-// function that replaces the line breaks in code to markdown readable line breaks
-function addLineBreaksCode(input){
-    return input.replaceAll('\n', '\n\n    ')
-}
+
 
 // credit section
 // function that renders the head of the credit section based on user input
@@ -238,14 +235,14 @@ ${table}
 ## Installation
 ${addLineBreaks(answers.installation.desc)}
 
-    ${addLineBreaksCode(answers.installation.code)}
+    ${addLineBreaks(answers.installation.code)}
 
 ## Usage
 
 ${usage}
 ${contribute}
 ## Tests
-    ${addLineBreaksCode(answers.testIns)}
+    ${addLineBreaks(answers.testIns)}
 
 ## Questions
 If you have any questions, feel free to contact me through my [GitHub](https://github.com/${answers.user.github}/) or [Email me](mailto:${answers.user.email}).

@@ -20,7 +20,7 @@ const questions = [
     }, {   // ask what it does
         type: 'input',
         name: 'description',
-        message(answers){return `\x1B[33mDESCRIPTION. What Does it do? Why did you create it? What problem does it solve? What technologies did you use?\x1B[0m`},
+        message(answers){return `\x1B[1;32mDESCRIPTION. \x1B[0;33mWhat Does it do? Why did you create it? What problem does it solve? What technologies did you use?\x1B[0m`},
     }, {  
         type: 'input', 
         name: 'installation.desc', 
@@ -28,7 +28,7 @@ const questions = [
     }, {  
         type: 'input', 
         name: 'installation.code', 
-        message(answers){return `What code should be run to install ${answers.title} in the command line?`}
+        message(answers){return `\x1B[033mWhat code should be run to install ${answers.title} in the command line?\x1B[0m`}
     }, {
         // TODO: usage information
         type: 'input',
@@ -43,7 +43,7 @@ const questions = [
         // TODO: usage information
         type: 'input',
         name: 'usage.One.code',
-        message: "What code should be run to do this?",
+        message: "\x1B[033mWhat code should be run to do this?\x1B[0m",
     },{
          // TODO: usage information
         type: 'list',
@@ -70,7 +70,7 @@ const questions = [
         // TODO: usage information
         type: 'input',
         name: 'usage.Two.code',
-        message: "What code should be run to do this? (if none, leave this blank)",
+        message: "\x1B[033mWhat code should be run to do this?\x1B[0m (if none, leave this blank)",
     },{
          // TODO: usage information
         type: 'list',
@@ -97,7 +97,7 @@ const questions = [
         // TODO: usage information
         type: 'input',
         name: 'usage.Three.code',
-        message: "What code should be run to do this? (if none, leave this blank)",
+        message: "\x1B[033mWhat code should be run to do this?\x1B[0m (if none, leave this blank)",
     },{
          // TODO: usage information
         type: 'list',
