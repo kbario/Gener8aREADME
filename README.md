@@ -71,7 +71,7 @@ From there, you can easily drag and drop these files/folder into your github rep
 
 ![Using the Output of Gener8aREADME](./assets/imgThree.png)
 
-
+SEE A COMPLETE WALKTHROUGH OF USING GENER8AREADME [HERE](https://watch.screencastify.com/v/GErYYXmUeL4jCrYhFGEm)
 
 
 ## Contribute to Gener8aREADME
