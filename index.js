@@ -61,49 +61,58 @@ const questions = [
         type: 'input',
         name: 'usage.Two.title',
         message: "\x1B[033mWhat title would you like to give this section?\x1B[0m (ideas: 'Main Feature', 'Using Output')",
+        when(answers) {return answers.usage.Two.bool === 'yes'}
     }, {
         // TODO: usage information
         type: 'input',
         name: 'usage.Two.desc',
         message: '\x1B[033mDescribe this usage.\x1B[0m',
+        when(answers) {return answers.usage.Two.bool === 'yes'}
     }, {
         // TODO: usage information
         type: 'input',
         name: 'usage.Two.code',
         message: "\x1B[033mWhat code should be run to do this?\x1B[0m (if none, leave this blank)",
+        when(answers) {return answers.usage.Two.bool === 'yes'}
     },{
          // TODO: usage information
         type: 'list',
         name: 'usage.Two.img',
         choices: ['yes', 'no'],
         message: '\x1B[034mWould you like to add an image to this usage section? \x1B[0mIf yes, add it to assets file name "imgTwo.png".',
+        when(answers) {return answers.usage.Two.bool === 'yes'}
     }, {
         // TODO: usage information
         type: 'list',
         name: 'usage.Three.bool',
         choices: ['yes', 'no'],
         message: 'Would you like to add another section of usage?',
+        when(answers) {return answers.usage.Two.bool === 'yes'}
     }, {
         // TODO: usage information
         type: 'input',
         name: 'usage.Three.title',
         message: "\x1B[033mWhat title would you like to give this section?\x1B[0m",
+        when(answers) {return answers.usage.Two.bool === 'yes' && answers.usage.Three.bool === 'yes'}
     }, {
         // TODO: usage information
         type: 'input',
         name: 'usage.Three.desc',
         message: '\x1B[033mDescribe this usage.\x1B[0m',
+        when(answers) {return answers.usage.Two.bool === 'yes' && answers.usage.Three.bool === 'yes'}
     }, {
         // TODO: usage information
         type: 'input',
         name: 'usage.Three.code',
         message: "\x1B[033mWhat code should be run to do this?\x1B[0m (if none, leave this blank)",
+        when(answers) {return answers.usage.Two.bool === 'yes' && answers.usage.Three.bool === 'yes'}
     },{
          // TODO: usage information
         type: 'list',
         name: 'usage.Three.img',
         choices: ['yes', 'no'],
         message: '\x1B[034mWould you like to add an image to this usage section? \x1B[0mIf yes, add it to assets file name "imgThree.png".',
+        when(answers) {return answers.usage.Two.bool === 'yes' && answers.usage.Three.bool === 'yes'}
     }, {   // did anyone help you ?
         type: 'list',
         name: 'credits.contributors.bool',
@@ -138,7 +147,7 @@ const questions = [
         // TODO: test instructions
         type: 'input', 
         name: 'testIns',
-        message: '\x1B[33mHow code can people use to test this project?\x1B[0m',
+        message: '\x1B[33mWhat code can people use to test this project?\x1B[0m',
     }, {   // What license?
         type: 'list',
         name: 'license',
@@ -183,7 +192,7 @@ const questions = [
 // TODO: Create a function to write README file
 function writeToFile(answers) {
     const gener8 = generateMarkdown(answers)
-    ;fs.writeFile(`./${answers.title}'s_README/README.md`, gener8, (err) => err ? console.log(err) : console.log("README \x1B[1;32m[√]\x1B[0m"))
+    fs.writeFile(`./${answers.title}'s_README/README.md`, gener8, (err) => err ? console.log(err) : console.log("README \x1B[1;32m[√]\x1B[0m"))
 }
 
 // TODO: Create a function to initialize app

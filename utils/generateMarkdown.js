@@ -70,7 +70,7 @@ function outputCredits(answers) {
     });
 
     return `${creditHead}
-${creditList}`
+${creditList.join('')}`
 }
 
 
