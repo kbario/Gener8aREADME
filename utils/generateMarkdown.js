@@ -192,7 +192,7 @@ function renderLicenseBadge(license) {
 }
 
 function renderOtherBadges(answers) {
-    return`![GitHub language count](https://img.shields.io/github/languages/count/${answers.user.github}/${answers.title}) ![GitHub top language](https://img.shields.io/github/languages/top/${answers.user.github}/${answers.title}) ![GitHub followers](https://img.shields.io/github/followers/${answers.user.github}?style=social) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/${answers.user.github}/${answers.title}/Jest)`
+    return`![GitHub last commit](https://img.shields.io/github/last-commit/${answers.user.github}/${answers.title}) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/${answers.user.github}/${answers.title}/Jest) ![GitHub top language](https://img.shields.io/github/languages/top/${answers.user.github}/${answers.title}) ![GitHub language count](https://img.shields.io/github/languages/count/${answers.user.github}/${answers.title}) ![GitHub followers](https://img.shields.io/github/followers/${answers.user.github}?style=social)`
 }
 
 // TODO: Create a function that returns the license link
