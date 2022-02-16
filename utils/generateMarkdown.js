@@ -191,6 +191,10 @@ function renderLicenseBadge(license) {
     }
 }
 
+function renderOtherBadges(answers) {
+    return`![GitHub language count](https://img.shields.io/github/languages/count/${answers.github}/${answers.title}) ![GitHub top language](https://img.shields.io/github/languages/top/${answers.github}/${answers.title})`
+}
+
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
@@ -217,6 +221,7 @@ function generateMarkdown(answers) {
     const usage = createUsage(answers)
     // create contents table
     const table = createContentsTable(answers)
+    const badges = renderOtherBadges(answers)
     
 
     // create the usage section based on keys provided
@@ -224,7 +229,7 @@ function generateMarkdown(answers) {
 
     const shield = renderLicenseBadge(answers.license)
     return `# ${answers.title}
-[![license](${shield}](./LICENSE.md)
+[![license](${shield}](./LICENSE.md) ${badges}
 
 ## Description
 ${addLineBreaks(answers.description)}
