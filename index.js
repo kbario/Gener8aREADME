@@ -16,7 +16,7 @@ const questions = [
     }, {   // project's title for readme title 
         type: 'input',
         name: 'title',
-        message: 'What is your project\'s name?',
+        message: 'What is your project\'s repo name?',
     }, {   // ask what it does
         type: 'input',
         name: 'description',

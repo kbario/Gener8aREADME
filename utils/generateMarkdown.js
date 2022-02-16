@@ -192,7 +192,7 @@ function renderLicenseBadge(license) {
 }
 
 function renderOtherBadges(answers) {
-    return`![GitHub language count](https://img.shields.io/github/languages/count/${answers.github}/${answers.title}) ![GitHub top language](https://img.shields.io/github/languages/top/${answers.github}/${answers.title})`
+    return`![GitHub language count](https://img.shields.io/github/languages/count/${answers.user.github}/${answers.title}) ![GitHub top language](https://img.shields.io/github/languages/top/${answers.user.github}/${answers.title}) ![GitHub followers](https://img.shields.io/github/followers/${answers.user.github}?style=social) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/${answers.user.github}/${answers.title}/Jest)`
 }
 
 // TODO: Create a function that returns the license link
